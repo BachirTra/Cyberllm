@@ -16,15 +16,8 @@ log "Downloading and installing Ollama..."
 log "Starting Ollama in background..."
 ollama serve > ollama.log 2>&1 &
 
-# Vérification du démarrage d'Ollama
-log "Waiting for Ollama to be ready on port 11434..."
-for i in {1..10}; do
-    if nc -z 127.0.0.1 11434; then
-        log "Ollama is running and ready."
-        break
-    fi
-    sleep 1
-done
+# Attendre quelques secondes pour s'assurer qu'Ollama est bien lancé
+sleep 10
 
 
 # Téléchargement du modèle
