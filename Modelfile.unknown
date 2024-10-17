@@ -1,4 +1,4 @@
-FROM ./Llama-3.1-WhiteRabbitNeo-2-70B-Q5_K_M-00001-of-00002.gguf
+FROM hf.co/bartowski/Llama-3.1-WhiteRabbitNeo-2-70B-GGUF:latest
 TEMPLATE """
 
 # Prompt pour la détection de vulnérabilités à partir d'une URL
