@@ -20,17 +20,15 @@ ollama serve > ollama.log 2>&1 &
 sleep 10
 
 
-# Téléchargement du modèle
-log "Downloading model..."
-ollama run hf.co/bartowski/Llama-3.1-WhiteRabbitNeo-2-70B-GGUF:latest || { log "Model download failed"; exit 1; }
-
 
 # Installer Open-WebUI dans un environnement virtuel
 log "Setting up virtual environment and installing Open-WebUI..."
-python3 -m venv venv
-source venv/bin/activate
 pip install open-webui --ignore-installed blinker || { log "Failed to install Open-WebUI"; exit 1; }
 
+
+# Téléchargement du modèle
+log "Downloading model..."
+ollama run hf.co/bartowski/Llama-3.1-WhiteRabbitNeo-2-70B-GGUF:latest || { log "Model download failed"; exit 1; }
 
 # Création du modèle
 log "Creating model..."
