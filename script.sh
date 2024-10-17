@@ -16,19 +16,32 @@ pip install open-webui --ignore-installed blinker || { log "Failed to install Op
 
 # Installation d'Ollama
 log "Downloading and installing Ollama..."
-(curl -fsSL https://ollama.com/install.sh | sh && ollama serve > ollama.log 2>&1) || { log "Failed to install Ollama"; exit 1; }
+(curl -fsSL https://ollama.com/install.sh | sh) || { log "Failed to install Ollama"; exit 1; }
 
-# Démarrage d'Ollama
-log "Starting Ollama..."
-ollama &
+# Démarrage d'Ollama en arrière-plan
+log "Starting Ollama in background..."
+ollama serve > ollama.log 2>&1 &
 
+# Vérification du démarrage d'Ollama
+log "Waiting for Ollama to be ready on port 11434..."
+for i in {1..10}; do
+    if nc -z 127.0.0.1 11434; then
+        log "Ollama is running and ready."
+        break
+    fi
+    sleep 1
+done
+
+# Si Ollama ne se lance pas après 10 tentatives
+if ! nc -z 127.0.0.1 11434; then
+    log "Failed to start Ollama on port 11434. Aborting."
+    exit 1
+fi
 
 # Téléchargement du modèle
 log "Downloading model..."
 ollama run hf.co/bartowski/Llama-3.1-WhiteRabbitNeo-2-70B-GGUF:latest || { log "Model download failed"; exit 1; }
 
-
 # Création du modèle
 log "Creating model..."
 ollama create test1 -f Modelfile || { log "Failed to create model"; exit 1; }
-
