@@ -18,9 +18,7 @@ pip install open-webui --ignore-installed blinker || { log "Failed to install Op
 log "Downloading and installing Ollama..."
 (curl -fsSL https://ollama.com/install.sh | sh && ollama serve > ollama.log 2>&1) || { log "Failed to install Ollama"; exit 1; }
 
-# Démarrage d'Ollama
-log "Starting Ollama..."
-ollama &
+
 
 # Vérification du démarrage d'Ollama
 log "Waiting for Ollama to start..."
