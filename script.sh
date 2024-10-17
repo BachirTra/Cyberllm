@@ -16,15 +16,6 @@ log "Downloading and installing Ollama..."
 log "Starting Ollama in background..."
 ollama serve > ollama.log 2>&1 &
 
-# Vérification du démarrage d'Ollama
-log "Waiting for Ollama to be ready on port 11434..."
-for i in {1..10}; do
-    if nc -z 127.0.0.1 11434; then
-        log "Ollama is running and ready."
-        break
-    fi
-    sleep 1
-done
 
 
 # Téléchargement du modèle
@@ -36,6 +27,10 @@ ollama run hf.co/bartowski/Llama-3.1-WhiteRabbitNeo-2-70B-GGUF:latest || { log "
 log "Setting up virtual environment and installing Open-WebUI..."
 python3 -m venv venv
 source venv/bin/activate
+# Mise à jour de pip dans l'environnement virtuel
+log "Upgrading pip..."
+pip install --upgrade pip || { log "Failed to upgrade pip"; exit 1; }
+
 pip install open-webui --ignore-installed blinker || { log "Failed to install Open-WebUI"; exit 1; }
 
 
