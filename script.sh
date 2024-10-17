@@ -10,7 +10,10 @@ wait
 
 # Lancer Ollama
 log "Starting Ollama..."
-ollama
+ollama &  # Exécuter Ollama en arrière-plan
+
+# Attendre quelques secondes pour s'assurer qu'Ollama est bien lancé
+sleep 5
 
 # Télécharger le modèle
 ollama run hf.co/bartowski/Llama-3.1-WhiteRabbitNeo-2-70B-GGUF:latest
