@@ -33,3 +33,8 @@ ollama run hf.co/bartowski/Llama-3.1-WhiteRabbitNeo-2-70B-GGUF:latest || { log "
 # Création du modèle
 log "Creating model..."
 ollama create test1 -f Modelfile || { log "Failed to create model"; exit 1; }
+
+python -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
