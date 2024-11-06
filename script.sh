@@ -37,4 +37,4 @@ ollama create test1 -f Modelfile || { log "Failed to create model"; exit 1; }
 python -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
-pip install -r requirements.txt
+pip install -r requierements2.txt
