@@ -38,3 +38,8 @@ python -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
 pip install -r requierements2.txt
+
+apt update
+apt upgrade
+apt install snapd
+apt install zaproxy
