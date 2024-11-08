@@ -42,7 +42,6 @@ pip install -r requierements2.txt
 apt update
 apt upgrade
 apt install snapd
-apt install zaproxy
 
 pip install --upgrade pip
 python -m venv langchain_env
@@ -64,4 +63,9 @@ langchain_env/bin/pip install \
     pydantic \
     sentence-transformers
 
-jupyter notebook --port 8890
+
+apt install zaproxy
+
+
+
+jupyter lab  --port 8090 --allow-root
