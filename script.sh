@@ -43,3 +43,25 @@ apt update
 apt upgrade
 apt install snapd
 apt install zaproxy
+
+pip install --upgrade pip
+python -m venv langchain_env
+source langchain_env/bin/activate
+langchain_env/bin/python -m ipykernel install --user --name=langchain_env
+langchain_env/bin/pip install ipykernel
+
+langchain_env/bin/pip install \
+    langchain-core==0.2.39 \
+    langchain-community==0.2.12 \
+    langchain-text-splitters==0.2.4 \
+    langchain==0.2.15 \
+    langchain-groq \
+    huggingface-hub \
+    openai \
+    requests \
+    langdetect \
+    fastapi \
+    pydantic \
+    sentence-transformers
+
+jupyter notebook --port 8890
